@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace loginForm
@@ -23,9 +16,9 @@ namespace loginForm
             string user, pass;
 
             user = txt_User.Text;
-            pass = txt_Pass.Text;   
+            pass = txt_Pass.Text;
 
-            if (user == "root"&& pass == "root")
+            if (user == "root" && pass == "root")
             {
                 MessageBox.Show("Login Successful");
             }
@@ -33,6 +26,49 @@ namespace loginForm
             {
                 MessageBox.Show("Error");
             }
+        }
+
+        private void txt_User_Enter(object sender, EventArgs e)
+        {
+            if (txt_User.Text == "Username")
+            {
+                txt_User.Text = "";
+                txt_User.ForeColor = Color.Black;
+            }
+        }
+
+        private void txt_User_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txt_User.Text))
+            {
+                txt_User.Text = "Username";
+                txt_User.ForeColor = Color.Silver;
+            }
+        }
+
+        private void txt_Pass_Enter(object sender, EventArgs e)
+        {
+            if (txt_Pass.Text == "Password")
+            {  
+                txt_Pass.Text = "";
+                txt_Pass.ForeColor = Color.Black;
+                txt_Pass.PasswordChar = '*'; // You can use a password character like '*'
+            }
+        }
+
+        private void txt_Pass_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txt_Pass.Text))
+            {
+                txt_Pass.Text = "Password";
+                txt_Pass.ForeColor = Color.Silver;
+                txt_Pass.PasswordChar = '\0'; // Reset password character
+            }
+        }
+
+        private void txt_User_Layout(object sender, LayoutEventArgs e)
+        {
+
         }
     }
 }
